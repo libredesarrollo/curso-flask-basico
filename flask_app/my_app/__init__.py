@@ -17,6 +17,10 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
+# social Flask Dance
+
+from flask_dance.contrib.facebook import make_facebook_blueprint
+
 import os
 
 app = Flask(__name__)
@@ -133,8 +137,11 @@ app.register_blueprint(categoryBp)
 app.register_blueprint(userBp)
 app.register_blueprint(invoiceProductBp)
 #app.register_blueprint(auth)
-#app.register_blueprint(fauth)
+app.register_blueprint(fauth)
 app.register_blueprint(spavue)
+
+facebook_blueprint = make_facebook_blueprint(scope="email", redirect_to="fauth.login_facebook")
+app.register_blueprint(facebook_blueprint)
 
 #db.create_all()
 

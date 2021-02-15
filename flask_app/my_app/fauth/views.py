@@ -6,6 +6,8 @@ from my_app import db
 from flask_login import current_user, login_user, logout_user, login_required
 from my_app import login_manager
 
+from flask_dance.contrib.facebook import facebook
+
 fauth = Blueprint('fauth',__name__)
 
 @login_manager.user_loader
@@ -83,3 +85,15 @@ def logout():
 @login_required
 def protegido():
    return "Vista protegida"
+
+@fauth.route('/login-facebook')
+def login_facebook():
+
+   if not facebook.authorized:
+      return redirect(url_for('facebook.login'))
+
+   res = facebook.get('/me?fields=name,email,picture')
+
+   print(res.json())
+
+   return "Login con Facebook"

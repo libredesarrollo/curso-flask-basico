@@ -28,3 +28,5 @@ class DevelopmentConfig(BaseConfig):
     MAIL_USE_SSL=False
     USER_EMAIL_SENDER_EMAIL="andres@gmail.com"
     CACHE_TYPE = "simple"
+    FACEBOOK_OAUTH_CLIENT_ID = 202215285023005
+    FACEBOOK_OAUTH_CLIENT_SECRET = "bd5d15fdfe0a7f0ed791232b2267f426"
